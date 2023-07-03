@@ -127,25 +127,12 @@ img {
   justify-content: center;
 }
 
-/* .menu-item-underline {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  width: 48px;
-  height: 4px;
-  border-radius: 2px;
-  background-color: var(--accent-color);
-} */
-
 .menu-link {
+  position: relative;
+
   display: block;
   padding-top: 24px;
   padding-bottom: 24px;
-}
-
-.menu-link {
-  position: relative;
 
   font-style: normal;
   font-weight: 500;
@@ -156,17 +143,17 @@ img {
 }
 .menu-link:hover,
 .menu-link:focus {
-  color: #404bbf;
+  color: var(--accent-color);
 
   transform: translateY(0);
   transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .menu-link-active::after {
   content: '';
 
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   display: block;
 
@@ -201,6 +188,8 @@ address {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #434455;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .address-link:hover,
 .address-link:focus {
@@ -273,6 +262,8 @@ address {
   color: #ffffff;
   background: var(--iris);
   cursor: pointer;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .order-button:hover,
 .order-button:focus {
@@ -477,6 +468,8 @@ address {
 
   background-color: var(--button-color);
   border-radius: 50%;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link:hover,
@@ -543,6 +536,9 @@ address {
   color: var(--grey-cl);
   border-radius: 4px;
   border: 1px solid var(--grey-cl);
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .customers-link:hover,
 .customers-link:focus {
@@ -652,6 +648,8 @@ address {
 
   background-color: var(--button-color);
   border-radius: 50%;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social:hover,
@@ -713,6 +711,11 @@ address {
 
   color: var(--button-color);
   background-color: var(--button-background);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-button:focus,
 .filter-button:hover {
@@ -732,8 +735,8 @@ address {
 }
 
 .portfolio-list {
-  position: relative;
-  overflow: hidden;
+  /* position: relative;
+  overflow: hidden; */
   margin-right: 24px;
 
   width: calc((100% - 48px) / 3);
@@ -754,35 +757,48 @@ address {
   top: 0;
   left: 0;
 
-  transform: translateY(150%);
   display: flex;
-  padding: 40px 32px;
   width: 360px;
   height: 300px;
-  background-color: var(--button-color);
 
   transition: transform 250ms;
 }
 .overlay-text {
+  position: absolute;
   width: 296px;
+  top: 0;
+  padding: 40px 32px;
+  width: 100%;
+  height: 100%;
 
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: 0.32px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
   color: var(--button-background);
+  background-color: var(--button-color);
+
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.overlay-text:hover,
+.overlay-text:focus {
+  transform: translateY(0%);
 }
 
 .portfolio-links {
   display: block;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-links:hover,
 .portfolio-links:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
-  transform: translateY(0);
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portfolio-link-box {
+  position: relative;
+  overflow: hidden;
 }
 
 .portfolio-block {
@@ -815,6 +831,11 @@ address {
   |==============================================================================
 */
 
+/**
+  |============================
+  | MODAL PAGE
+  |============================
+*/
 .backdrop {
   position: fixed;
   top: 0;
@@ -824,6 +845,9 @@ address {
   height: 100%;
 
   background: rgba(46, 47, 66, 0.4);
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .is-hidden {
@@ -833,9 +857,9 @@ address {
 }
 
 .modal {
-  position: relative;
+  position: absolute;
   width: 408px;
-  height: 584px;
+  min-height: 584px;
 
   top: 50%;
   left: 50%;
@@ -846,6 +870,7 @@ address {
   background-color: #fcfcfc;
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .close-button {
@@ -856,9 +881,26 @@ address {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
   width: 24px;
   height: 24px;
-  border-radius: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: var(--cornflower, #e7e9fc);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.close-button:hover,
+.close-button:focus {
+  border: none;
+  background-color: var(--accent-color);
+}
+.close-icon {
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.close-icon:hover,
+.close-icon:focus {
+  fill: #ffffff;
 }
