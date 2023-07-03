@@ -33,6 +33,9 @@ p {
 .link {
   text-decoration: none;
 }
+button {
+  border: none;
+}
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -117,6 +120,23 @@ img {
   display: flex;
   gap: 40px;
 }
+.menu-item {
+  position: relative;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* .menu-item-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 48px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-color);
+} */
 
 .menu-link {
   display: block;
@@ -125,6 +145,8 @@ img {
 }
 
 .menu-link {
+  position: relative;
+
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -135,6 +157,23 @@ img {
 .menu-link:hover,
 .menu-link:focus {
   color: #404bbf;
+
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.menu-link-active::after {
+  content: '';
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-color);
 }
 
 /* --------------------Address--------------------- */
@@ -166,6 +205,10 @@ address {
 .address-link:hover,
 .address-link:focus {
   color: #404bbf;
+
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* --------------------/Address--------------------- */
@@ -234,6 +277,10 @@ address {
 .order-button:hover,
 .order-button:focus {
   background-color: #404bbf;
+
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 /**
   |============================
@@ -435,6 +482,10 @@ address {
 .social-link:hover,
 .social-link:focus {
   background-color: var(--accent-color);
+
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-icons {
   color: currentColor;
@@ -497,6 +548,10 @@ address {
 .customers-link:focus {
   border-color: var(--accent-color);
   color: var(--accent-color);
+
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .clients {
   fill: currentColor;
@@ -602,6 +657,10 @@ address {
 .footer-social:hover,
 .footer-social:focus {
   background-color: #31d0aa;
+
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /**
@@ -660,6 +719,10 @@ address {
   border: 1px solid transparent;
   background-color: var(--accent-color);
   color: #ffffff;
+
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-job-list {
@@ -669,12 +732,44 @@ address {
 }
 
 .portfolio-list {
+  position: relative;
+  overflow: hidden;
   margin-right: 24px;
 
   width: calc((100% - 48px) / 3);
 }
 .portfolio-list:nth-child(3n) {
   margin-right: 0;
+}
+
+.portfolio-list:hover .overlay {
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Overlay text */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transform: translateY(150%);
+  display: flex;
+  padding: 40px 32px;
+  width: 360px;
+  height: 300px;
+  background-color: var(--button-color);
+
+  transition: transform 250ms;
+}
+.overlay-text {
+  width: 296px;
+
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.32px;
+  color: var(--button-background);
 }
 
 .portfolio-links {
@@ -685,6 +780,9 @@ address {
 .portfolio-links:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  transform: translateY(0);
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-block {
@@ -716,3 +814,51 @@ address {
   | /PORTFOLIO
   |==============================================================================
 */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(46, 47, 66, 0.4);
+}
+
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: relative;
+  width: 408px;
+  height: 584px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 4px;
+  background-color: #fcfcfc;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+}
+
+.close-button {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--cornflower, #e7e9fc);
+}
